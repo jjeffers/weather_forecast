@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "forecasts#show"
+  resource :forecast, :only => [:show]
 
-  resource :forecast
+  get "search/addresses" => "addresses#search", as: :search_addresses
+    
 end
