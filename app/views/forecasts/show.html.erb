@@ -1,0 +1,21 @@
+
+<div class="w-full max-w-none">
+  <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl ">Weather Forecast</h1>
+  <%= form_tag forecast_path, 
+    class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" do %>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
+        Address
+      </label>
+      <%= text_area_tag :address, nil, 
+        placeholder: "Your Street Address",
+        class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div> 
+    
+    <div class="md:flex md:items-center">
+      <%= button_tag "Get my local weather forecast!",
+        class: "shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" %>
+    </div>   
+  <% end %>
+
+</div>
