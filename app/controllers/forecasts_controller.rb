@@ -1,8 +1,12 @@
 class ForecastsController < ApplicationController
   def show
     if params[:query].present?
-      latitude, longitude = helpers.fetch_address_coordinates(params[:query])
-      @forecast = helpers.fetch_weather(latitude, longitude)
+      @country_code = params[:country_code]
+      @postcode = params[:postcode]
+      @forecast = Rails.cache.fetch("#{@country_code}#{@postcode}", expires_in: 30.minutes) do
+        helpers.fetch_weather(@country_code, @postcode, params[:latitude].to_f, params[:longitude].to_f)
+      end
+      
     end
 
     respond_to do |format|

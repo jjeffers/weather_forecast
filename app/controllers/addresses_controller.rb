@@ -28,7 +28,9 @@ class AddressesController < ApplicationController
             { 
               address: feature["properties"]["formatted"],
               latitude: feature["properties"]["lat"],
-              longitude: feature["properties"]["lon"]
+              longitude: feature["properties"]["lon"],
+              postcode: feature["properties"]["postcode"],
+              country_code: feature["properties"]["country_code"],
             }
           end
         end

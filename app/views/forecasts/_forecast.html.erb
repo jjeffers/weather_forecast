@@ -1,1 +1,12 @@
-<%= forecast.inspect %>
+<%= content_tag :span, "Current temperature: #{forecast["current"]["temperature_2m"]}°C", class: "text-2m" %>
+<%= content_tag :span, "Current weather conditions: #{forecast["current"]["weather_code"]}", class: "text-2m" %>
+<div class="flex flex-row"> 
+    <% forecast["daily"]["time"].each_with_index do |day, index| %>
+        <div class="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <%= content_tag :span, "Day: #{day}", class: "text-2xs" %>
+            <%= content_tag :span, "Max temperature: #{forecast["daily"]["temperature_2m_max"][index]}°C", class: "text-2xs" %>
+            <%= content_tag :span, "Min temperature: #{forecast["daily"]["temperature_2m_min"][index]}°C", class: "text-2xs" %>
+            <%= content_tag :span, "Weather code: #{forecast["daily"]["weather_code"][index]}", class: "text-2xs" %>
+        </div>    
+    <% end %>
+</div>

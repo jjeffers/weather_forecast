@@ -15,6 +15,10 @@
             class: "my-6 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
             placeholder: "Your Address", autocomplete: "off" %>
       </div>
+      <%= hidden_field_tag :latitude, "", data: { search_target: "latitude" } %>
+      <%= hidden_field_tag :longitude, "", data: { search_target: "longitude" } %>
+      <%= hidden_field_tag :postcode, "", data: { search_target: "postcode" } %>
+      <%= hidden_field_tag :country_code, "", data: { search_target: "country_code" } %>
       <div id="suggestions" class="realtive w-full mt-2 bg-white rounded-lg shadow-lg"
           data-search-target="suggestions" data-action="mousedown->search#childClicked">
         <%= render partial: "addresses/suggestions", locals: { results: [] } %>

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="search"
 export default class extends Controller {
-  static targets = ["input", "suggestions", "longitude", "latitude"];
+  static targets = ["input", "suggestions", "longitude", "latitude", "postcode", "country_code"];
 
   connect() {
     document.addEventListener("click", (event) => {
@@ -46,6 +46,10 @@ export default class extends Controller {
   childClicked(event) {
     this.childWasClicked = this.element.contains(event.target);
     this.inputTarget.value = event.target.innerText;
+    this.longitudeTarget.value = event.target.getAttribute("longitude");
+    this.latitudeTarget.value = event.target.getAttribute("latitude");
+    this.postcodeTarget.value = event.target.getAttribute("postcode");
+    this.country_codeTarget.value = event.target.getAttribute("country_code");
     this.hideSuggestions();
   }
 

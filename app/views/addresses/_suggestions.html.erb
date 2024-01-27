@@ -1,6 +1,8 @@
 <% results.each do |result| %>
   <div class="p-2 border-b border-gray-300 hover:bg-gray-100">
-    <br><span>
+    <span longitude=<%= result[:longitude] %> latitude=<%= result[:latitude] %> 
+    postcode="<%= result[:postcode] %>" 
+    country_code="<%= result[:country_code] %>">
       <%= result[:address] %>
     </span>
   </div>
