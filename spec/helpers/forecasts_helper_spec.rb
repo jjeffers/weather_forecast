@@ -1,15 +1,38 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ForecastHelper. For example:
-#
-# describe ForecastHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+class MockGeocoderResult
+  def coordinates
+    [1,2]
+  end
+end
+
 RSpec.describe ForecastsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "featch_address_coordinates" do
+    it "fetches address_coordinates from geocoder" do
+      allow(Geocoder).to receive(:search).and_return([MockGeocoderResult.new])
+        
+      coordinates = helper.fetch_address_coordinates("123 Main St")
+      expect(coordinates.length).to eq(2)
+    end
+
+    it "handles an emrpty response from the geocoder" do
+      allow(Geocoder).to receive(:search).and_return([])
+        
+      coordinates = helper.fetch_address_coordinates("123 Main St")
+      expect(coordinates.length).to eq(0)
+    end
+  end
+
+  describe "fetch_weather" do
+    it "fetches weather from weather API" do
+      stub_request(:get, /api.open-meteo.com/).
+        to_return(
+            status: 200, 
+            body: { features: [] }.to_json, 
+            headers: {})
+
+      weather_data = helper.fetch_weather(1,2)
+
+    end
+  end
 end
