@@ -37,7 +37,6 @@ RSpec.describe "Addresses", type: :request do
           body: {"statusCode":401,"error":"Unauthorized","message":"Invalid apiKey"}.to_json,
           headers: {})
 
-
       get search_addresses_path, params: { query: "123 Main St" },  as: :turbo_stream
       expect(response).to have_http_status(:success)
     end
