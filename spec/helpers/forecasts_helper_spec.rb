@@ -28,4 +28,18 @@ RSpec.describe ForecastsHelper, type: :helper do
       weather_data = helper.fetch_weather("jp", "0877", 1,2)
     end
   end
+
+  describe "weather_description_from_weather_code" do
+    it "returns a 'Clear Sky' for weather code '0'" do
+      expect(helper.weather_description_from_code("0")).to eq("Clear sky")
+    end
+
+    it "returns a '' for weather code -01" do
+      expect(helper.weather_description_from_code(-1)).to eq("")
+    end
+
+    it "returns a '' for weather code 101" do
+      expect(helper.weather_description_from_code(101)).to eq("")
+    end
+  end
 end

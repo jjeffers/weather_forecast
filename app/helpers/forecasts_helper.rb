@@ -19,5 +19,39 @@ module ForecastsHelper
         end
 
         result
-    end    
+    end
+    
+    def weather_description_from_code(weather_code)
+        # See documentation at https://open-meteo.com/en/docs
+        case weather_code.to_i
+        when 0
+            "Clear sky"
+        when 1..3
+            "Mainly clear, partly cloudy, and overcast"
+        when 45..48
+            "Fog and depositing rime fog"
+        when 51..55 
+            "Drizzle: Light, moderate, and dense intensity"
+        when 56..57
+            "Freezing Drizzle: Light and dense intensity"
+        when 61..65
+            "Rain: Slight, moderate and heavy intensity"
+        when 66..67
+            "Freezing Rain: Light and heavy intensity"
+        when 71..75
+            "Snow fall: Slight, moderate, and heavy intensity"
+        when 77 
+            "Snow grains"
+        when 80..82
+            "Rain showers: Slight, moderate, and violent"
+        when 85..86
+            "Snow showers slight and heavy"
+        when 95 
+            "Thunderstorm: Slight or moderate"
+        when 96..99
+            "Thunderstorm with slight and heavy hail"
+        else 
+            ""
+        end
+    end
 end

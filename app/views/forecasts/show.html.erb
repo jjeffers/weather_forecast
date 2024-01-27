@@ -8,7 +8,7 @@
     suggestions_url: search_addresses_path,
     turbo_stream: true}) do |form| %>
       <div class="relative">
-        <%= form.text_field :query, data: {
+        <%= form.text_field :address, data: {
                 search_target: "input",
                 action: "blur->search#hideSuggestions",
             },
