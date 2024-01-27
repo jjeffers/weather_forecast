@@ -1,5 +1,4 @@
 module ForecastsHelper
-    include HTTParty
 
     def fetch_address_coordinates(address_text)
         Rails.logger.debug "Looking up coordinates for '#{address_text}'"
@@ -14,7 +13,7 @@ module ForecastsHelper
         request_url = "https://api.open-meteo.com/v1/forecast?latitude=#{latitude.round(2)}&longitude=#{longitude.round(2)}" +
             "&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min"
 
-        response = HTTParty.get(request_url)
+        response = Faraday.get(request_url)
 
         Rails.logger.debug "OpenMeteo Response: #{response.code}"
         json = JSON.parse(response.body)
