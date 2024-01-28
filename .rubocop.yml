@@ -1,2 +1,9 @@
-require: rubocop-rails
-require: rubocop-rspec
+require: 
+  - rubocop-rails
+  - rubocop-rspec
+
+Style/Documentation:
+  Enabled: false
+  
+RSpec/ExampleLength:
+  Max: 8

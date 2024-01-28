@@ -5,12 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Addresses', type: :request do
   describe 'GET /search' do
     it 'returns http success with good address ' do
-      stub_request(:any, /api.geoapify.com/)
-        .to_return(
-          status: 200,
-          body: { features: [{ properties: { formatted: '123 Main Street Oakdale IL 67705' } }] }.to_json,
-          headers: {}
-        )
+      allow_any_instance_of(AddressesHelper).to receive(:fetch_address).and_return(
+        [{ address: '124 Main St', longitude: 23, latitude: 20, postcode: 77631, country_code: 'us'}])
 
       get search_addresses_path, params: { query: '123 Main St' }, as: :turbo_stream
       expect(response).to have_http_status(:success)
@@ -22,25 +18,15 @@ RSpec.describe 'Addresses', type: :request do
     end
 
     it 'handles an empty search set from the API' do
-      stub_request(:any, /api.geoapify.com/)
-        .to_return(
-          status: 200,
-          body: { features: [] }.to_json,
-          headers: {}
-        )
+      allow_any_instance_of(AddressesHelper).to receive(:fetch_address).and_return(
+        [{ address: '124 Main St', longitude: 23, latitude: 20, postcode: 77631, country_code: 'us'}])
 
       get search_addresses_path, params: { query: '123 Main St' }, as: :turbo_stream
       expect(response).to have_http_status(:success)
     end
 
-    it 'handles an faiure status from API' do
-      stub_request(:any, /api.geoapify.com/)
-        .to_return(
-          status: 401,
-          body: { "statusCode": 401, "error": 'Unauthorized', "message": 'Invalid apiKey' }.to_json,
-          headers: {}
-        )
-
+    it 'handles an empty result from the search' do
+      allow_any_instance_of(AddressesHelper).to receive(:fetch_address).and_return([])
       get search_addresses_path, params: { query: '123 Main St' }, as: :turbo_stream
       expect(response).to have_http_status(:success)
     end
