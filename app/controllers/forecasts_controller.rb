@@ -8,14 +8,13 @@ class ForecastsController < ApplicationController
        params[:country_code].present? &&
        params[:postcode].present?
 
-      @country_code = params[:country_code]
-      @postcode = params[:postcode]
       @address = params[:address]
 
-      @cached = Rails.cache.exist?("#{@country_code}#{@postcode}")
-      Rails.logger.debug "Cache key: #{@country_code}#{@postcode} - #{@cached}"
-      @forecast = Rails.cache.fetch("#{@country_code}#{@postcode}", expires_in: 30.minutes) do
-        helpers.fetch_weather(@country_code, @postcode, params[:latitude].to_f, params[:longitude].to_f)
+      @cached = Rails.cache.exist?("#{params[:country_code]}#{params[:postcode]}")
+      Rails.logger.debug "Cache key: #{params[:country_code]}#{params[:postcode]} - #{@cached}"
+      @forecast = Rails.cache.fetch("#{params[:country_code]}#{params[:postcode]}", expires_in: 30.minutes) do
+        helpers.fetch_weather(params[:country_code],
+                              params[:postcode], params[:latitude].to_f, params[:longitude].to_f)
       end
     end
 

@@ -2,9 +2,17 @@ require:
   - rubocop-rails
   - rubocop-rspec
 
+AllCops:
+  Exclude:
+    - 'config/environments/*.rb'
+    - 'bin/*'
+
+Metrics/AbcSize:
+  Enabled: false
+
 Metrics/MethodLength:
-  Max: 15
-  
+  Max: 25
+
 Style/Documentation:
   Enabled: false
 

@@ -3,7 +3,8 @@
 module ForecastsHelper
   def fetch_weather(_country_code, _postcode, latitude, longitude, _options = {})
     result = []
-    request_url = "https://api.open-meteo.com/v1/forecast?latitude=#{latitude.round(2)}&longitude=#{longitude.round(2)}" \
+    request_url = "https://api.open-meteo.com/v1/forecast?latitude=#{latitude.round(2)}" \
+                  "&longitude=#{longitude.round(2)}" \
                   '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min'
 
     conn = Faraday.new do |faraday|
@@ -23,6 +24,7 @@ module ForecastsHelper
   end
 
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
   def weather_description_from_code(weather_code)
     # See documentation at https://open-meteo.com/en/docs
     case weather_code.to_i
@@ -57,4 +59,5 @@ module ForecastsHelper
     end
   end
   # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
