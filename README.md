@@ -1,29 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* This is a demo application showing a basic weather forecast UI. 
 
-Things you may want to cover:
+* To run all tests:
+ - rails spec
 
-* Ruby version
+* To run application locally:
+  - Note: there is no DB requirements (the default SQLite DB is left enabled, but no migrations/schema exist.)
+  - bin/dev
+    
 
-* System dependencies
+* Docker instructions:
+** image construction
+   - From within the project directory:
+   - docker build -t forecast .
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-geocodeapi key b83e3e4a0f774e36a872fae75f31ab89
+** container launch
+   - docker run --rm -it -p 3000:3000 --env RAILS_MASTER_KEY=<master key content here> forecast
+   - application is server at http://localhost:3000
 
 
