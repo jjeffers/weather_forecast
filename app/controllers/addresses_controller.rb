@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 class AddressesController < ApplicationController
-
   def search
     results = []
-
-    if params[:query].present?
-      results = helpers.fetch_address(params[:query])
-    end
+    results = helpers.fetch_address(params[:query]) if params[:query].present?
 
     respond_to do |format|
       format.turbo_stream do

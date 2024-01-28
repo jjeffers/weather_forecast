@@ -22,6 +22,7 @@ module ForecastsHelper
     result
   end
 
+  # rubocop:disable Metrics/MethodLength
   def weather_description_from_code(weather_code)
     # See documentation at https://open-meteo.com/en/docs
     case weather_code.to_i
@@ -55,4 +56,5 @@ module ForecastsHelper
       ''
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

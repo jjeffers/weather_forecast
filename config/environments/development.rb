@@ -4,17 +4,13 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   config.enable_reloading = true
-
-  # Do not eager load code on boot.
   config.eager_load = false
 
   # Show full error reports.
   config.consider_all_requests_local = true
-
   # Enable server timing
   config.server_timing = true
 
-  # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
@@ -26,7 +22,6 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
-
     config.cache_store = :null_store
   end
 
