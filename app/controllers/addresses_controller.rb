@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class AddressesController < ApplicationController
   GEOAPIFY_API_KEY = 'b83e3e4a0f774e36a872fae75f31ab89'
 
   def search
     results = []
 
-    if params.dig(:query).present?
+    if params[:query].present?
       address_text = params[:query]
 
       request_url = "https://api.geoapify.com/v1/geocode/search?text=#{address_text}&apiKey=#{GEOAPIFY_API_KEY}"
@@ -21,7 +23,7 @@ class AddressesController < ApplicationController
 
         Rails.logger.debug "Geoapify Response: #{JSON.pretty_generate(json)}"
 
-        if json.dig('features').present?
+        if json['features'].present?
           results = json['features'].map do |feature|
             {
               address: feature['properties']['formatted'],

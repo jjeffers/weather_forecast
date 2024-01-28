@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ForecastsController < ApplicationController
   def show
     if params[:address].present? &&

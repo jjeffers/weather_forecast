@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 class MockGeocoderResult
@@ -16,7 +18,7 @@ RSpec.describe ForecastsHelper, type: :helper do
           headers: {}
         )
 
-      weather_data = helper.fetch_weather('jp', '0877', 1, 2)
+      helper.fetch_weather('jp', '0877', 1, 2)
     end
 
     it 'handles an error response from the weather API' do
@@ -28,7 +30,7 @@ RSpec.describe ForecastsHelper, type: :helper do
           headers: {}
         )
 
-      weather_data = helper.fetch_weather('jp', '0877', 1, 2)
+      helper.fetch_weather('jp', '0877', 1, 2)
     end
   end
 
