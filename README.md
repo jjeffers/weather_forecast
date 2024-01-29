@@ -1,25 +1,25 @@
 # README
 
-* This is a demo application showing a basic weather forecast UI. 
+## This is a demo application showing a basic weather forecast UI. 
 
-* To run all tests:
+## To run all tests:
  - rails spec
 
-* To run application locally:
-  - Note: there is no DB requirements (the default SQLite DB is left enabled, but no migrations/schema exist.)
+## To run application locally:
+  - Note: there is no DB requirements (the default SQLite DB is left enabled, but no migrations/schema exist).
   - bin/dev
 
-* Docker instructions:
-** image construction
+## Docker instructions:
+### image construction
    - From within the project directory:
    - docker build -t forecast .
 
-** container launch
+### container launch
    - docker run --rm -it -p 3000:3000 --env RAILS_MASTER_KEY=<master key content here> forecast
    - application is server at http://localhost:3000
 
 
-* Design Notes
+## Design Notes
 
 For the most part the application does not employ objects. The functonality is encapsulated in extensions of existing Rails classes as methods implmented in controllers or helpers.
 
@@ -32,5 +32,6 @@ Once the text field is populated, there are also inputs that contain the geoloca
 In both controllers the handling is kept to a minimum - we defer the API interactions to the helper methods. This allows for separation of logic which in turn made is easier to test and refactor.
 
 The UI CSS is entirely Tailwind CSS. Each element uses the Tailwind convention of "inline" CSS classes.
+
 
 
