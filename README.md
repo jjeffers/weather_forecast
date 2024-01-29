@@ -7,6 +7,7 @@
 
 ## To run application locally:
   - Note: there is no DB requirements (the default SQLite DB is left enabled, but no migrations/schema exist).
+  - bin/rails dev:cache (to enable dev mode caching)
   - bin/dev
 
 ## Docker instructions:
